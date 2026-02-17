@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankalp: My Brahmacharya Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #ff9933; /* Saffron */
+            --accent-hover: #ffad5c;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --font-main: 'Poppins', sans-serif;
+            --font-hindi: 'Tiro Devanagari Hindi', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255,153,51,0.1) 0%, rgba(18,18,18,0) 100%);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+            .full-width {
+                grid-column: span 2;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-top: 20px;
+            background: #333;
+            border-radius: 20px;
+            height: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #ff5e00);
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Quote Section */
+        .quote-box {
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-text {
+            font-family: var(--font-hindi);
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .refresh-quote {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+        .refresh-quote:hover { color: var(--accent-color); }
+
+        /* To-Do List */
+        .todo-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #121212;
+            color: white;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-color);
+        }
+
+        button.add-btn {
+            padding: 12px 20px;
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button.add-btn:hover { background-color: var(--accent-hover); }
+
+        ul { list-style: none; }
+
+        .task-item {
+            background: rgba(255,255,255,0.03);
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .task-item.completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .task-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+
+        .check-btn { color: var(--success-color); }
+        .delete-btn { color: var(--danger-color); }
+
+        /* Emergency Button */
+        .emergency-btn {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid var(--danger-color);
+            color: var(--danger-color);
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .emergency-btn:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-fire"></i> Brahmacharya Sankalp</h1>
+        <div class="subtitle">17 Feb 2026 — 17 Feb 2027</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="card full-width">
+            <h2 style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <i class="fas fa-hourglass-half"></i> Samay Chakra
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number" id="days-completed">0</span>
+                    <span class="stat-label">Days Completed (Sadhana)</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number" id="days-left">365</span>
+                    <span class="stat-label">Days Remaining (Lakshya)</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0% Yatra Puri Hui</div>
+        </div>
+
+        <div class="card">
+            <button class="refresh-quote" onclick="loadNewQuote()"><i class="fas fa-sync-alt"></i></button>
+            <h3 style="margin-bottom: 15px; color: var(--accent-color);">
+                <i class="fas fa-book-open"></i> Prerana (Motivation)
+            </h3>
+            <div class="quote-box">
+                <div class="quote-text" id="quote-display">
+                    "Loading..."
+                </div>
+                <div class="quote-author" id="author-display"></div>
+            </div>
+            <button class="emergency-btn" onclick="emergencyTrigger()">
+                <i class="fas fa-skull-crossbones"></i> Urge Aa Rahi Hai? (Panic Button)
+            </button>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 15px; color: var(--accent-color);">
+                <i class="fas fa-list-check"></i> Aaj Ke Karya (Tasks)
+            </h3>
+            <div class="todo-input-group">
+                <input type="text" id="task-input" placeholder="Add a new task...">
+                <button class="add-btn" onclick="addTask()"><i class="fas fa-plus"></i></button>
+            </div>
+            <ul id="task-list">
+                </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Stay Hard. Stay Focused. | Created for Self-Mastery</p>
+    </footer>
+
+    <script>
+        // --- CONFIGURATION ---
+        const startDate = new Date("2026-02-17T00:00:00");
+        const endDate = new Date("2027-02-17T00:00:00");
+        const totalDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+        // --- MOTIVATION DATA ---
+        const quotes = [
+            { text: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। (Tera adhikar kewal karm karne me hai, phal ki iccha me nahi.)", author: "Bhagavad Gita 2.47" },
+            { text: "क्रोधाद्भवति सम्मोह: सम्मोहात्स्मृतिविभ्रम:। (Krodh se moah utpann hota hai, aur moah se smriti bhramit ho jati hai.)", author: "Bhagavad Gita 2.63" },
+            { text: "इन्द्रियाणि प्रमाथीनि हरन्ति प्रसभं मनः। (Yeh indriyan itni balwan hain ki vidwan purush ke mann ko bhi balpurvak har leti hain.)", author: "Bhagavad Gita 2.60" },
+            { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+            { text: "Jo vyakti apne mann ko nahi jeet sakta, wo duniya ko kya jeetega?", author: "Anonymous" },
+            { text: "Discipline is doing what you hate to do, but doing it like you love it.", author: "Mike Tyson" },
+            { text: "Brahmacharya is the conservation of energy for higher purpose.", author: "Swami Sivananda" },
+            { text: "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्। (Apna uddhar swayam karein, apne ko neeche na girayein.)", author: "Bhagavad Gita 6.5" }
+        ];
+
+        // --- TIME CALCULATIONS ---
+        function updateDashboard() {
+            const now = new Date();
+            
+            // Calculate differences
+            const timeSinceStart = now - startDate;
+            const timeUntilEnd = endDate - now;
+
+            // Days completed
+            let daysDone = Math.floor(timeSinceStart / (1000 * 60 * 60 * 24));
+            if (daysDone < 0) daysDone = 0; // If checked before start date
+
+            // Days remaining
+            let daysLeft = Math.ceil(timeUntilEnd / (1000 * 60 * 60 * 24));
+            if (daysLeft < 0) daysLeft = 0;
+
+            // Percentage
+            let percentage = (daysDone / totalDays) * 100;
+            if (percentage > 100) percentage = 100;
+            if (percentage < 0) percentage = 0;
+
+            // DOM Updates
+            document.getElementById('days-completed').innerText = daysDone;
+            document.getElementById('days-left').innerText = daysLeft;
+            document.getElementById('progress-bar').style.width = percentage + "%";
+            document.getElementById('progress-text').innerText = percentage.toFixed(1) + "% Completed";
+        }
+
+        // --- QUOTE SYSTEM ---
+        function loadNewQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote-display').innerText = quotes[randomIndex].text;
+            document.getElementById('author-display').innerText = "- " + quotes[randomIndex].author;
+        }
+
+        function emergencyTrigger() {
+            alert("RUKO! \n\nKya ye wo insaan hai jo tum banna chahte ho? \nKya kuch second ka maza tumhare 1 saal ke sapne se bada hai?\n\nPhone ko side me rakho aur 20 Pushups lagao abhi!");
+        }
+
+        // --- TO DO LIST SYSTEM (LOCAL STORAGE) ---
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('brahmaTasks')) || [];
+            const list = document.getElementById('task-list');
+            list.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                li.innerHTML = `
+                    <span>${task.text}</span>
+                    <div class="task-actions">
+                        <button class="check-btn" onclick="toggleTask(${index})"><i class="fas fa-check"></i></button>
+                        <button class="delete-btn" onclick="deleteTask(${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function addTask() {
+            const input = document.getElementById('task-input');
+            const text = input.value.trim();
+            if (text) {
+                const tasks = JSON.parse(localStorage.getItem('brahmaTasks')) || [];
+                tasks.push({ text: text, completed: false });
+                localStorage.setItem('brahmaTasks', JSON.stringify(tasks));
+                input.value = '';
+                loadTasks();
+            }
+        }
+
+        function toggleTask(index) {
+            const tasks = JSON.parse(localStorage.getItem('brahmaTasks'));
+            tasks[index].completed = !tasks[index].completed;
+            localStorage.setItem('brahmaTasks', JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        function deleteTask(index) {
+            const tasks = JSON.parse(localStorage.getItem('brahmaTasks'));
+            tasks.splice(index, 1);
+            localStorage.setItem('brahmaTasks', JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        // Enter key support for input
+        document.getElementById("task-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+
+        // --- INITIALIZATION ---
+        updateDashboard();
+        loadNewQuote();
+        loadTasks();
+        setInterval(updateDashboard, 60000); // Update every minute
+
+    </script>
+</body>
+  </html>
